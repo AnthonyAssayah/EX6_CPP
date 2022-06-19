@@ -3,7 +3,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <League.hpp>
+#include "Team.hpp"
+#include "League.hpp"
+#include "Game.hpp"
+#include <algorithm>
 
 using namespace std;
 
@@ -11,11 +14,11 @@ class Schedule{
 
     private:
         League *league;
-        vector< vector<Game*> > results_table;
+        std::vector<std::vector<Game*>> results_table;
 
     public:
         Schedule();
-        Schedule(League *league);
+        Schedule(League my_league);
         vector< vector<Game*> > getResultsTable();
         void printSchedule();
       
