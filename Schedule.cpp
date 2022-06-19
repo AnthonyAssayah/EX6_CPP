@@ -20,6 +20,28 @@ Schedule::Schedule(League *league) {
     }
 }
 
+Schedule::Schedule(League my_league) {
+
+    int increment = 0;
+    std::vector<size_t> index_team = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+
+    while (this->results_table.size() < 38) {
+        std::vector<Game*> tour;
+        for (size_t i = 0, j = 19; increment < 10 ; i++, j--) {
+            Game *game = new Game(my_league.getTeams()[index_team[i]], my_league.getTeams()[index_team[j]]);
+            tour.push_back(game);
+            
+            increment++;
+        }
+        this->results_table.push_back(tour);
+
+        std::rotate(index_team.begin(), index_team.begin() + 1, index_team.end());
+        increment = 0;
+        
+    }
+}
+
+
 // Getter for results_table
 vector< vector<Game*> > Schedule::getResultsTable() {
     return this->results_table;
@@ -33,3 +55,5 @@ void Schedule::printSchedule() {
         }
     }
 }
+
+
